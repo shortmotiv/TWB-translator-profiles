@@ -297,6 +297,22 @@
 
 
 
+					// Check for invalid values (for all but the usernames) by
+					// setting limits on the lengths of the strings.
+					// The limit for languages might truncate valid values,
+					// since some profiles have multiple languages with
+					// interconnections among them.
+					$cellValues[1] = 
+						( strlen($cellValues[1])>100 ) ? '' : $cellValues[1];
+					$cellValues[2] = 
+						( strlen($cellValues[2])>200 ) ? '' : $cellValues[2];
+					$cellValues[3] = 
+						( strlen($cellValues[3])>4   ) ? '' : $cellValues[3];
+					$cellValues[4] = 
+						( strlen($cellValues[4])>20  ) ? '' : $cellValues[4];
+
+
+					
 					$cellValues[2] = addNewlineEveryThreeWords($cellValues[2]);
 
 
