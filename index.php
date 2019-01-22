@@ -91,7 +91,7 @@
 
 
 
-	<!-- <noscript></noscript> -->
+	<noscript></noscript>
 
 
 	<div id="out">
@@ -151,18 +151,179 @@
 
 
 
-			function addNewlineEveryThreeWords($string) {
+			// A word is passed as argument and is checked to determine if
+			// it is a language name. The first letter of the word is checked
+			// first and the word is then accordingly matched against some
+			// language names.
+			function isLanguage($word) {
 
-				$array = explode(' ', $string);
+				$isLang = false;
 
-				for ($c=0; $c<sizeof($array); ++$c) {
-					if ( ($c+1)%3==0 ) {
-						$array[$c] .= '<br>';
-					}
+				// Note for future:
+				// Language names that have whitespaces in between need to be
+				// be checked/matched properly. (Currently the content of the
+				// language section is split using a whitespace, which does
+				// not cover these cases.)
+				$languages = array(
+					array( "Abkhazian", "Afar", "Afrikaans", "Albanian", "Amharic", "Arabic", "Armenian", "Assamese", "Azerbaijani" ),
+					array( "Baatonum", "Balinese", "Bambara", "Bantu(Other)", "Basa", "Basque", "Belarusian", "Bemba", "Bengali", "Berber (Other)", "Bhojpuri (& Tharu)", "Bhojpuri (&amp; Tharu)", "Bhojpuri (& Tharu)", "Bini", "Bislama", "Bosnian", "Bulgarian", "Burmese" ),
+					array( "Catalan", "Cebuano (Bisayan)", "Chin", "Chinese", "Creoles & Pidgins (French-based Other)", "Creoles &amp; Pidgins (French-based Other)", "Croatian", "Czech" ),
+					array( "Dagbani", "Danish", "Dari", "Dinka", "Dutch" ),
+					array( "Esperanto", "Estonian", "Ewe" ),
+					array( "Fang", "Farsi (Persian)", "Fijian", "Finnish", "French", "Fulah", "Fulani" ),
+					array( "Gaelic", "Galician", "Ganda", "Georgian", "German", "Gilbertese", "Greek", "Guarani", "Gujarati" ),
+					array( "Haitian-Creole", "Hausa", "Hebrew", "Hiligaynon", "Hindi", "Hmong", "Hungarian" ),
+					array( "Icelandic", "Igbo", "Iloko", "Indonesian", "Irish", "Italian", "Izon" ),
+					array( "Japanese", "Javanese" ),
+					array( "K'iche'", "Kachin", "Kalenjin ", "Kamba", "Kannada", "Kanuri", "Kara-Kalpak", "Karen", "Kazakh", "Khasi", "Khmer (Central)", "Kikuyu", "Kinyarwanda", "Kirghiz", "Kongo", "Konkani", "Korean", "Krio", "Kurdish" ),
+					array( "Lao", "Latin", "Latvian", "Lingala", "Lithuanian", "Lozi", "Luo (Kenya,Tanzania)", "Lushai (Mizo)" ),
+					array( "Maay Maay", "Macedonian", "Malagasy", "Malay", "Malayalam", "Maltese", "Manipuri", "Marathi", "Marshallese", "Masai", "Moldavian", "Mongolian" ),
+					array( "NdebeleNorth", "Nepali", "Nigerian", "Nilo-Saharan(Other)", "Norwegian", "Norwegian (Bokmal)", "Norwegian (Nynorsk)", "Nyanja" ),
+					array( "Oriya", "Oromo" ),
+					array( "Panjabi", "Papiamento", "Pashto (Pushto)", "Persian (Farsi)", "Polish", "Portuguese" ),
+					array( "Quechua" ),
+					array( "Romanian", "Rundi", "Russian" ),
+					array( "Sanskrit", "Serbian", "Serbo-Croat", "Shona", "Simple English", "Sindhi", "Sinhala (Sinhalese)", "Slovak", "Slovenian", "Somali", "Songhai", "SothoNorthern", "Southern Sotho / Sesotho", "Spanish", "Sundanese", "Swahili", "Swedish", "Sylheti" ),
+					array( "Tagalog", "Tajik", "Tamil", "Telugu", "Tetum", "Thai", "Tibetan", "Tigre", "Tigrinya", "Timne", "Tok Pisin", "Tonga (Nya)", "Tsonga", "Tswana", "Tumbuka", "Turkish", "Turkmen" ),
+					array( "Ukrainian", "Urdu", "Uzbek" ),
+					array( "Vietnamese" ),
+					array( "Waray", "Wolof" ),
+					array( "Xhosa" ),
+					array( "Yao", "Yoruba" ),
+					array( "Zulu" ),
+				);
+
+				// Check the first letter first and then match against language
+				// names from arrays sorted alphabetically (indices indicating
+				// corresponding letters in the English alphabet).
+				switch ($word[0]) {
+					case 'A':
+						$isLang = ( in_array($word, $languages[0]) )  ? true : false;
+						break;
+					case 'B':
+						$isLang = ( in_array($word, $languages[1]) )  ? true : false;
+						break;
+					case 'C':
+						$isLang = ( in_array($word, $languages[2]) )  ? true : false;
+						break;
+					case 'D':
+						$isLang = ( in_array($word, $languages[3]) )  ? true : false;
+						break;
+					case 'E':
+						$isLang = ( in_array($word, $languages[4]) )  ? true : false;
+						break;
+					case 'F':
+						$isLang = ( in_array($word, $languages[5]) )  ? true : false;
+						break;
+					case 'G':
+						$isLang = ( in_array($word, $languages[6]) )  ? true : false;
+						break;
+					case 'H':
+						$isLang = ( in_array($word, $languages[7]) )  ? true : false;
+						break;
+					case 'I':
+						$isLang = ( in_array($word, $languages[8]) )  ? true : false;
+						break;
+					case 'J':
+						$isLang = ( in_array($word, $languages[9]) )  ? true : false;
+						break;
+					case 'K':
+						$isLang = ( in_array($word, $languages[10]) ) ? true : false;
+						break;
+					case 'L':
+						$isLang = ( in_array($word, $languages[11]) ) ? true : false;
+						break;
+					case 'M':
+						$isLang = ( in_array($word, $languages[12]) ) ? true : false;
+						break;
+					case 'N':
+						$isLang = ( in_array($word, $languages[13]) ) ? true : false;
+						break;
+					case 'O':
+						$isLang = ( in_array($word, $languages[14]) ) ? true : false;
+						break;
+					case 'P':
+						$isLang = ( in_array($word, $languages[15]) ) ? true : false;
+						break;
+					case 'Q':
+						$isLang = ( in_array($word, $languages[16]) ) ? true : false;
+						break;
+					case 'R':
+						$isLang = ( in_array($word, $languages[17]) ) ? true : false;
+						break;
+					case 'S':
+						$isLang = ( in_array($word, $languages[18]) ) ? true : false;
+						break;
+					case 'T':
+						$isLang = ( in_array($word, $languages[19]) ) ? true : false;
+						break;
+					case 'U':
+						$isLang = ( in_array($word, $languages[20]) ) ? true : false;
+						break;
+					case 'V':
+						$isLang = ( in_array($word, $languages[21]) ) ? true : false;
+						break;
+					case 'W':
+						$isLang = ( in_array($word, $languages[22]) ) ? true : false;
+						break;
+					case 'X':
+						$isLang = ( in_array($word, $languages[23]) ) ? true : false;
+						break;
+					case 'Y':
+						$isLang = ( in_array($word, $languages[24]) ) ? true : false;
+						break;
+					case 'Z':
+						$isLang = ( in_array($word, $languages[25]) ) ? true : false;
+						break;
+					default:
+						$isLang = false;
+						break;
 				}
 
-				return implode(' ', $array);
+				return $isLang;
 
+			}
+
+
+
+			// The entire content of the languages section is passed and
+			// a line break is inserted after each language pair (e.g.,
+			// "English to Esperanto", "Latin to Gaelic", etc.) and after
+			// each set of specializations.
+			function separateLanguagePairs($langContent) {
+
+				$words = explode(' ', $langContent);
+
+				// The first three words can be skipped, because regardless
+				// of whether they are the only words in the entire content
+				// or not, they make up a language pair. If a further pair or
+				// a specialization set exists after this pair, a line break
+				// will be entered BEFORE them (i.e., AFTER this pair).
+				for ($c=3; $c<sizeof($words); ++$c) {
+
+					// If current word is a language name and is followed by
+					// "to", it is considered as the starting of a language
+					// pair and a line break is inserted before it (i.e., AFTER
+					// the preceding language pair or specialization set), and
+					// the word counter skips this pair.
+					if ( isLanguage($words[$c]) && $words[$c+1]=="to" ) {
+						$words[$c] = '<br>' . $words[$c];
+						$c += 2;
+					}
+
+					// If current word is "Specializes", one more word ("in:")
+					// is skipped and then checking continues. (The reason
+					// behind skipping only one word is the possibility of
+					// no specialization value (i.e., nothing after the "in:"),
+					// due to some error.)
+					else if ( $words[$c]=="Specializes" ) {
+						$words[$c] = '<br>' . $words[$c];
+						$c += 1;
+					}
+
+				}
+
+				return implode(' ', $words);
 
 			}
 
@@ -313,7 +474,9 @@
 
 
 					
-					$cellValues[2] = addNewlineEveryThreeWords($cellValues[2]);
+					// Insert a line break after each language pair (and
+					// also each set of specializations).
+					$cellValues[2] = separateLanguagePairs($cellValues[2]);
 
 
 
