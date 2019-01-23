@@ -164,6 +164,9 @@
 				// be checked/matched properly. (Currently the content of the
 				// language section is split using a whitespace, which does
 				// not cover these cases.)
+				// These language names have been collected from the provider
+				// list page on:
+				//   https://twb.translationcenter.org/workspace/providers/list
 				$languages = array(
 					array( "Abkhazian", "Afar", "Afrikaans", "Albanian", "Amharic", "Arabic", "Armenian", "Assamese", "Azerbaijani" ),
 					array( "Baatonum", "Balinese", "Bambara", "Bantu(Other)", "Basa", "Basque", "Belarusian", "Bemba", "Bengali", "Berber (Other)", "Bhojpuri (& Tharu)", "Bhojpuri (&amp; Tharu)", "Bhojpuri (& Tharu)", "Bini", "Bislama", "Bosnian", "Bulgarian", "Burmese" ),
